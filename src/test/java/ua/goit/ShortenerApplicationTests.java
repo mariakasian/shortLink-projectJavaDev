@@ -23,6 +23,8 @@ public class ShortenerApplicationTests {
 
 	@Test
 	void contextLoads() {
-		assertThat(controller).isNotNull();
+			assertThat(controller).isNotNull();
 	}
 }
+
+

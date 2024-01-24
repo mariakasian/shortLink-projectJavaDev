@@ -1,6 +1,5 @@
 package ua.goit.url.service;
 
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -35,8 +34,6 @@ class UrlServiceImplTest {
 
     @InjectMocks
     private UrlServiceImpl urlService;
-
-
 
     @Test
     void testGetAllUrlUser() {

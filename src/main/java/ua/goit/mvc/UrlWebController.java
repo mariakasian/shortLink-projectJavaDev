@@ -36,7 +36,8 @@ public class UrlWebController {
     @GetMapping("/list")
     public ModelAndView getAllLinks() {
         ModelAndView result = new ModelAndView("all-guest");
-        result.addObject("userUrls", urlService.listAll());
+        result.addObject("userUrls", urlService.getActiveUrl());
+        result.addObject("userUrlsInactive", urlService.getInactiveUrl());
         return result;
     }
 
@@ -55,7 +56,7 @@ public class UrlWebController {
     @GetMapping("/list/inactive")
     public ModelAndView getAllInactiveLinks() {
         ModelAndView result = new ModelAndView("all-guest");
-        result.addObject("userUrls", urlService.getInactiveUrl());
+        result.addObject("userUrlsInactive", urlService.getInactiveUrl());
         return result;
     }
 
@@ -63,7 +64,8 @@ public class UrlWebController {
     public ModelAndView getAllLinksAuth(Principal principal) {
         ModelAndView result = new ModelAndView("all-guest");
         result.addObject("username", principal.getName());
-        result.addObject("userUrls", urlService.listAll());
+        result.addObject("userUrls", urlService.getActiveUrl());
+        result.addObject("userUrlsInactive", urlService.getInactiveUrl());
         return result;
     }
 
@@ -71,7 +73,8 @@ public class UrlWebController {
     public ModelAndView getAllUsersLinks(Principal principal) {
         ModelAndView result = new ModelAndView("all-user");
         result.addObject("username", principal.getName());
-        result.addObject("userUrls", urlService.getAllUrlUser(principal.getName()));
+        result.addObject("userUrls", urlService.getActiveUrlUser(principal.getName()));
+        result.addObject("userUrlsInactive", urlService.getInactiveUrlUser(principal.getName()));
         return result;
     }
 
@@ -87,7 +90,7 @@ public class UrlWebController {
     public ModelAndView getAllUsersInactiveLinks(Principal principal) {
         ModelAndView result = new ModelAndView("all-user");
         result.addObject("username", principal.getName());
-        result.addObject("userUrls", urlService.getInactiveUrlUser(principal.getName()));
+        result.addObject("userUrlsInactive", urlService.getInactiveUrlUser(principal.getName()));
         return result;
     }
 

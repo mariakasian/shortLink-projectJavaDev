@@ -28,7 +28,6 @@ import java.util.stream.Collectors;
 
 import static ua.goit.url.UrlEntity.VALID_DAYS;
 
-
 @Service
 @RequiredArgsConstructor
 public class UrlServiceImpl implements UrlService {
@@ -183,6 +182,10 @@ public class UrlServiceImpl implements UrlService {
     public void redirectToUrl(String shotUrl, HttpServletResponse response) throws IOException {
         UrlEntity urlEntity = urlRepository.findByShortUrl(shotUrl)
                 .orElseThrow(() -> new IllegalArgumentException("Url with short url = " + shotUrl + " not found"));
+
+        if(urlEntity.getExpirationDate().isBefore(LocalDate.now())){
+            throw new IllegalArgumentException("Link is inactive");
+        }
 
         urlEntity.setVisitCount(urlEntity.getVisitCount() + 1);
         urlEntity.setExpirationDate(LocalDate.now().plusDays(VALID_DAYS));

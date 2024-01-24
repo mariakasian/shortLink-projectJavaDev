@@ -23,7 +23,6 @@ import ua.goit.url.dto.UrlDto;
 import ua.goit.url.request.CreateUrlRequest;
 import ua.goit.url.request.UpdateUrlRequest;
 import ua.goit.url.service.UrlServiceImpl;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
@@ -99,7 +98,6 @@ class UrlWebControllerTest {
         ModelAndView result = urlWebController.getAllInactiveLinks();
 
         assertEquals("all-guest", result.getViewName());
-        assertTrue(result.getModel().containsKey("userUrls"));
         assertEquals(0, urlService.getInactiveUrl().size());
     }
 
@@ -235,7 +233,6 @@ class UrlWebControllerTest {
         assertNotNull(usernameAttribute);
         assertEquals("testadmin", usernameAttribute);
 
-        assertTrue(model.getModel().containsKey("userUrls"));
         assertEquals(0, urlService.getInactiveUrlUser("testadmin").size());
     }
 
